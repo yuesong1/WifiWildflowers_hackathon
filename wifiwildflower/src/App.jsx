@@ -3,7 +3,9 @@ import './App.css';
 import { initializeApp } from "firebase/app";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-import { AppRoutes } from "./routes";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import LoginScreen from './components/Login/LoginScreen.tsx';
+
 
 console.log(process.env.REACT_APP_API_KEY)
 
@@ -25,14 +27,12 @@ const analytics = getAnalytics(app);
 
 function App() {
   return (
-    <AppRoutes/>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <button onClick={() => signInAnonymously(auth)}>
-    //       Login Anonymously
-    //     </button>
-    //   </header>
-    // </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
