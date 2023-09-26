@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { getAuth, signInAnonymously } from "firebase/auth";
 
 function Copyright(props: any) {
   return (
@@ -29,6 +30,7 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function LoginScreen() {
+  const auth = getAuth();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -92,6 +94,7 @@ export default function LoginScreen() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={() => signInAnonymously(auth)}
             >
               Anon Log In 
             </Button>
