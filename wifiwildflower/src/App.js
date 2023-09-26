@@ -3,8 +3,6 @@ import './App.css';
 import { initializeApp } from "firebase/app";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-import dotenv from 'dotenv';
-dotenv.config();
 
 
 const firebaseConfig = {
