@@ -7,8 +7,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "r
 import LoginScreen from './components/Login/LoginScreen';
 import { useState, useEffect, createContext, useContext } from 'react';
 import DashboardScreen from "./components/Dashboard/DashboardScreen.jsx"
-import Leaderboard from "./pages/RankingPage.jsx";
+import LeaderBoard from './components/LeaderBoard/LeaderBoard.jsx';
 import Camera from './components/Camera/Camera';
+import PushbackJet from './components/PushbackJet/PushbackJet';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -89,9 +90,11 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/dashboard" element={<DashboardScreen />} />
+          <Route path="/leaderboard" element={<LeaderBoard />} />
           <Route path="/cam" element={<Camera />} />
+          <Route path="/jet" element={<PushbackJet />} />
           <Route path="*" element={currentUser ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-          <Route path='/leaderboard' element={<Leaderboard />} />
+    
         </Routes>
     </Router>
   );
