@@ -3,9 +3,11 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Map from './Map';
 import LocatorButton from './LocatorButton';
+import { GoogleMapCard } from './GoogleMapCard';
+import { Button } from '@mui/material';
 const currentPosition={
-    latitute:"",
-    longitude:""
+    latitute:0,
+    longitude:0
 }
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
@@ -14,8 +16,8 @@ if (navigator.geolocation) {
   }
   
 function success(position) {
-    currentPosition.latitude = position.coords.latitude;
-    currentPosition.longitude = position.coords.longitude;
+    currentPosition.latitude = parseFloat(position.coords.latitude);
+    currentPosition.longitude =parseFloat(position.coords.longitude);
 console.log(`Latitude: ${currentPosition.latitude}, Longitude: ${currentPosition.longitude}`);
 }
   
@@ -28,8 +30,10 @@ const LocationScreen = props => {
     return (
     <div>
       Your current locaiton is : {currentPosition.latitute}+{currentPosition.longitude}
-      <LocatorButton mapObject={mapObject} />
-      <Map setMapObject={setMapObject} />
+      {/* <LocatorButton mapObject={mapObject} /> */}
+      {/* <Map setMapObject={setMapObject} /> */}
+      <GoogleMapCard height="500px" lat={currentPosition.latitude} lng={currentPosition.longitude}/>
+      <Button variant="contained">Join Event</Button>
     </div>
   )
 }
