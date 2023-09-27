@@ -25,10 +25,6 @@ console.log("Unable to retrieve your location");
 
 const LocationScreen = props => {
     const [mapObject, setMapObject] = useState(null);
-
-
-    
-  
     return (
     <div>
       Your current locaiton is : {currentPosition.latitute}+{currentPosition.longitude}
