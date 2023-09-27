@@ -13,7 +13,6 @@ import { useLocation } from 'react-router-dom';
 export const NavBar= ()=> { 
     const location = useLocation();
     const [value, setValue] = React.useState(location.pathname);
-
     const authContext = useContext(AuthContext);
     const currentUser = authContext ? authContext.currentUser : null;
     const { refetchUser } = useContext(AuthContext);
