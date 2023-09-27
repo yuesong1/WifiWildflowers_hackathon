@@ -10,6 +10,7 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { birdPic,randomPic } from '../../Urls';
+import "./CardStyle.css"
 
 import { useTheme } from '@emotion/react'
 import { Container } from '@mui/material';
@@ -25,7 +26,7 @@ const UserCard = props => {
     }
 
   return (
-    <Card sx={{ display: 'flex' }} onClick={navigateToCam}>
+    <Card sx={{ display: 'flex' }} onClick={navigateToCam} className='cardStyle'>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', backgroundColor: "#FEF7DA"}}>
             <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="h5">

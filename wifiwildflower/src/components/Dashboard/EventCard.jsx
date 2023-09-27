@@ -17,7 +17,7 @@ import { Container } from '@mui/material';
 const EventCard = props => {
     const theme = useTheme();
   return (
-    <Card sx={{ display: 'flex' }}>
+    <Card sx={{ display: 'flex' }} className='cardStyle'>
         <CardMedia
             component="img"
             sx={{ width: 151 }}

@@ -1,0 +1,7 @@
+.cardStyle {
+    display: flex;
+    flex-direction: row;
+    width: 85vw;
+    height: 45vw;
+
+}
