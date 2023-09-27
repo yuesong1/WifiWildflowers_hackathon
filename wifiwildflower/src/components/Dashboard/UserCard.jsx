@@ -26,10 +26,10 @@ const UserCard = props => {
 
   return (
     <Card sx={{ display: 'flex' }} onClick={navigateToCam}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', backgroundColor: "#FEF7DA"}}>
             <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="h5">
-                Camera Challenge
+                Coffee Cup Recycling Challenge
             </Typography>
             <Typography variant="subtitle1" color="text.secondary" component="div">
                 Your contribution matters
@@ -40,7 +40,7 @@ const UserCard = props => {
         <CardMedia
             component="img"
             sx={{ width: 151 }}
-            image={randomPic}
+            image={process.env.PUBLIC_URL + '/coffeecup.png'}
             alt="pic"
         />
         </Card>

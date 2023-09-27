@@ -15,11 +15,14 @@ import { getDatabase, ref as dbRef , onValue, set } from "firebase/database";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../App';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function LoginScreen() {
+  const authContext = React.useContext(AuthContext);
+  const refetchUser = authContext?.refetchUser;
   const navigate = useNavigate();
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -38,7 +41,7 @@ export default function LoginScreen() {
         username: name,
       }).then(() => {
         // Call the function to refetch user
-        // refetchUser(); // Uncomment this if you have a refetchUser function
+        refetchUser && refetchUser();
       });
   
       navigate('/dashboard'); // Uncomment this if you have a navigate function
