@@ -32,7 +32,7 @@ export default function DashboardScreen() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" maxWidth="xs" spacing={4} justify="space-around" 
-        sx={{justifyContent: "center", display:"flex", marginLeft:0, padding:0, width:"100vw", marginTop:"10px",
+        sx={{justifyContent: "center", display:"flex", marginLeft:0, padding:0, width:"100vw", marginTop:"10px", marginBottom:"20vh",
         flexDirection:"column", alignItems:"center"}}>
         <CssBaseline />
         
