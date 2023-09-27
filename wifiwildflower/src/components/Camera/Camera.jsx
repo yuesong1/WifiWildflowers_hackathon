@@ -7,10 +7,12 @@ import { Button } from '@mui/material';
 import { getDatabase, ref as dbRef , onValue, set, update } from "firebase/database";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { AuthContext, AuthContextType } from '../../App'; 
+import { CircularProgress } from '@mui/material';
 
 const Camera = () => {
   const [found, setFound] = useState(false);
   const [hasRun, setHasRun] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const authContext = useContext(AuthContext);
   const currentUser = authContext ? authContext.currentUser : null;
@@ -48,6 +50,7 @@ const Camera = () => {
     event.target.value = null;
   };
   const sendFile = (file) => {
+    setIsLoading(true);
     const FormData = require("form-data");
   
     const form = new FormData();
@@ -72,6 +75,7 @@ const Camera = () => {
     .then((response) => {
       console.log(response.data);
       ProcessResponse(response.data["eden-ai"].items, currentUser)
+      setIsLoading(false); // End loading
     })
     .catch((error) => {
       console.error(error.response.data.error.message.file[0]);
@@ -81,6 +85,8 @@ const Camera = () => {
         // that falls out of the range of 2xx
         console.error(error.response.data);
       }
+      setIsLoading(false); // End loading
+      setHasRun(false);
     });
   }
 
@@ -134,7 +140,14 @@ const Camera = () => {
         </Button>
       </label>
     </div>
-    {hasRun && (
+    {isLoading ? (
+      <div style={{display: "flex", justifyContent: "center", alignItems: "center", fontSize: "large"}}>
+        <CircularProgress />
+      </div>
+    ) : (
+      // Your existing code
+    
+    hasRun && (
       found ? (
         <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"}}>
           <h2>Success! You've successfully earned 10 points</h2>
@@ -146,7 +159,9 @@ const Camera = () => {
           <ThumbDownAlt style={{color: '#ff0000', fontSize: '100px'}}></ThumbDownAlt>
         </div>
       )
-    )}
+    )
+    )
+  }
       
       <NavBar></NavBar>
     </div>
