@@ -11,19 +11,42 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { getDatabase, ref as dbRef , onValue, set } from "firebase/database";
+import { getAuth, signInAnonymously } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { useNavigate } from 'react-router-dom';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function LoginScreen() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    try {
+      const data = new FormData(event.currentTarget);
+      const name = data.get('name');
+      const auth = getAuth();
+      const userCredential = await signInAnonymously(auth);
+      const user = userCredential.user;
+  
+      const db = getDatabase();
+      const userRef = dbRef(db, 'users/' + user.uid);
+  
+      await set(userRef, {
+        username: name,
+      }).then(() => {
+        // Call the function to refetch user
+        // refetchUser(); // Uncomment this if you have a refetchUser function
+      });
+  
+      navigate('/dashboard'); // Uncomment this if you have a navigate function
+    } catch (error) {
+      if (error instanceof Error) {
+        // setError(error.message); // Uncomment this if you have a setError function
+      }
+    }
   };
 
   return (
@@ -40,41 +63,19 @@ export default function LoginScreen() {
         >
 
           <Typography component="h1" variant="h5">
-            Sign in
+            Welcome
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="name"
+              label="Name"
+              name="name"
+              autoComplete="name"
               autoFocus
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
             <Button
               type="submit"
               fullWidth
@@ -83,18 +84,6 @@ export default function LoginScreen() {
             >
               Anon Log In 
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
