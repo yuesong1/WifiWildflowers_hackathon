@@ -13,14 +13,21 @@ import { birdPic,randomPic } from '../../Urls';
 
 import { useTheme } from '@emotion/react'
 import { Container } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 const EventCard = props => {
     const theme = useTheme();
+    const navigate = useNavigate();
+
+    const navigateToEvent = () => {
+        navigate('/event');
+    }
   return (
-    <Card sx={{ display: 'flex' }} className='cardStyle'>
+    <Card sx={{ display: 'flex' }} className='cardStyle' 
+    onClick={navigateToEvent} >
         <CardMedia
             component="img"
-            sx={{ width: 151 }}
+            sx={{ width: "37vw" }}
             image={randomPic}
             alt="pic"
         />

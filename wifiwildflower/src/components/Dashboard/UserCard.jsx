@@ -40,7 +40,7 @@ const UserCard = props => {
         </Box>
         <CardMedia
             component="img"
-            sx={{ width: 151 }}
+            sx={{ width: "37vw" }}
             image={process.env.PUBLIC_URL + '/coffeecup.png'}
             alt="pic"
         />

@@ -40,7 +40,7 @@ const TransportCard = props => {
         </Box>
         <CardMedia
             component="img"
-            sx={{ width: 151 }}
+            sx={{ width: "37vw" }}
             image={process.env.PUBLIC_URL + '/bike.png'}
             alt="pic"
         />
