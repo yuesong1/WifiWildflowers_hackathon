@@ -123,25 +123,26 @@ const Transport = () => {
   
       // Increment points
       
-      let points = 0;
       switch(myitem) {
         case "Shoe":
-            points = 100;
+            currentPoints += 100;
+            setPointsEarned(100);
             break;
         case "Bike":
-          points = 100;
+        currentPoints += 100;
+          setPointsEarned(100);
           break;
         case "Bus":
-          points = 40;
+            currentPoints += 40;
+          setPointsEarned(40);
           break;
         default:
           break;
       }
-      setPointsEarned(points);
   
       // Update points in the database
       await update(userRef, {
-        points: currentPoints += points,
+        points: currentPoints,
       }).then(() => {
         console.log("updated score")
         // Call the function to refetch user
