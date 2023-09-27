@@ -1,5 +1,6 @@
 import React from "react";
-import "./ProgressBar.csx"
+//import "./ProgressBar.csx"
+
 const ProgressBar = (props) => {
   const { bgcolor, completed } = props;
   return (
