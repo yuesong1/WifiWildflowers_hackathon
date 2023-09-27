@@ -1,8 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Map from './Map';
-import LocatorButton from './LocatorButton';
 import { GoogleMapCard } from './GoogleMapCard';
 import { Button } from '@mui/material';
 const currentPosition={
