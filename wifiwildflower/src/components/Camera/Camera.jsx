@@ -74,7 +74,8 @@ const Camera = () => {
       ProcessResponse(response.data["eden-ai"].items, currentUser)
     })
     .catch((error) => {
-      console.error(error);
+      console.error(error.response.data.error.message.file[0]);
+      alert(error.response.data.error.message.file[0])
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
