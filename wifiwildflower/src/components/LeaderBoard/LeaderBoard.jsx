@@ -25,7 +25,7 @@ const LeaderBoard = () => {
         <NavBar/>
             <Container sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", padding:"40px"}}>
                 <PushbackJet/>
-                <Typography variant="h4">Leader Board</Typography>
+                <Typography variant="h5">Leader Board</Typography>
                 <Grid container xs={12} sx={{padding:"40px"}}>
                     {list.map((user)=>(
                         <>

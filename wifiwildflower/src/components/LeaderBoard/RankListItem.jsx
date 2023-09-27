@@ -6,18 +6,19 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import { Grid } from '@mui/material';
 
 const RankListItem = (props) => {
   return (
-    <ListItem alignItems="flex-start" sx={{alignItems:"center",justifyContent:"space-between"}}>
-    <ListItemAvatar>
-    <Avatar alt={props.username} src="/static/images/avatar/1.jpg" />
+    <Grid container direction="row" sx={{alignItems:"center",justifyContent:"space-between", flexDirection:"row"}}>
+    <ListItemAvatar sx={{marginTop:0}}>
+    <Avatar alt={props.username} src="/static/images/avatar/1.jpg" sx={{marginTop:0}}/>
     </ListItemAvatar>
     <ListItemText
       primary={props.username}
     />
    
-    </ListItem>
+    </Grid>
   )
 }
 
