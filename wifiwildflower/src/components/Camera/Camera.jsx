@@ -2,13 +2,16 @@ import React, { useRef, useState, useContext } from 'react'
 import axios from 'axios';
 import FormData from 'form-data';
 import {NavBar} from "../NavBar/NavBar";
-import { CameraAlt } from "@mui/icons-material";
+import { CameraAlt, ThumbUpAlt, ThumbDownAlt } from "@mui/icons-material";
 import { Button } from '@mui/material';
 import { getDatabase, ref as dbRef , onValue, set, update } from "firebase/database";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { AuthContext, AuthContextType } from '../../App'; 
 
 const Camera = () => {
+  const [found, setFound] = useState(false);
+  const [hasRun, setHasRun] = useState(false);
+
   const authContext = useContext(AuthContext);
   const currentUser = authContext ? authContext.currentUser : null;
 
@@ -80,58 +83,75 @@ const Camera = () => {
     });
   }
 
+  const ProcessResponse = async (items, currentUser) => {
+    const db = getDatabase();
+    const userRef = dbRef(db, 'users/' + currentUser.uid);
+    const confidenceThreshold = 0.95; // Set your desired confidence threshold here
+    const targetItem = "Cup"; // Set your target item here
+  
+    let found = false;
+  
+    items.forEach(item => {
+      if (item.label === targetItem && item.confidence > confidenceThreshold) {
+        found = true;
+      }
+    });
+    setFound(found);
+    setHasRun(true);
+  
+    console.log(`Target item detected with high confidence: ${found}`);
+    if (found) {
+      // Fetch current points
+      let currentPoints = 0;
+      onValue(userRef, (snapshot) => {
+        currentPoints = snapshot.val().points;
+      });
+  
+      // Increment points
+      currentPoints += 10;
+  
+      // Update points in the database
+      await update(userRef, {
+        points: currentPoints,
+      }).then(() => {
+        console.log("updated score")
+        // Call the function to refetch user
+        // refetchUser(); // Uncomment this if you have a refetchUser function
+      });
+    }
+    
+  }
+
   return (
     <div>
       <h1 style={{textAlign: "center"}}> Take a photo</h1>
       <div style={{display: "flex", justifyContent: "center"}}>
       <label htmlFor="icon-button-file">
         <input accept="image/*" id="icon-button-file" type="file" capture="user" onChange={handleFileUpload} style={{display: "none"}}/>
-        <Button component="span" sx={{ margin: 5, borderRadius: 5, boxShadow: '0px 0px 20px 5px rgba(0, 0, 0, 0.3)' }}>
-          <CameraAlt sx={{ fontSize: 100 }} />
+        <Button component="span" sx={{ margin: 5, borderRadius: 5, boxShadow: '0px 0px 30px 5px rgba(0, 0, 0, 0.3)' }}>
+          <CameraAlt sx={{ fontSize: 100, color: 'black' }} />
         </Button>
       </label>
     </div>
+    {hasRun && (
+      found ? (
+        <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"}}>
+          <h2>Success! You've successfully earned 10 points</h2>
+          <ThumbUpAlt style={{color: '#bada55', fontSize: '100px'}}></ThumbUpAlt>
+        </div>
+      ) : (
+        <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"}}>
+          <h2>Failure! You didn't earn any points</h2>
+          <ThumbDownAlt style={{color: '#ff0000', fontSize: '100px'}}></ThumbDownAlt>
+        </div>
+      )
+    )}
       
       <NavBar></NavBar>
     </div>
   )
 }
-const ProcessResponse = async (items, currentUser) => {
-  const db = getDatabase();
-  const userRef = dbRef(db, 'users/' + currentUser.uid);
-  const confidenceThreshold = 0.95; // Set your desired confidence threshold here
-  const targetItem = "Cup"; // Set your target item here
 
-  let found = false;
-
-  items.forEach(item => {
-    if (item.label === targetItem && item.confidence > confidenceThreshold) {
-      found = true;
-    }
-  });
-
-  console.log(`Target item detected with high confidence: ${found}`);
-  if (found) {
-    // Fetch current points
-    let currentPoints = 0;
-    onValue(userRef, (snapshot) => {
-      currentPoints = snapshot.val().points;
-    });
-
-    // Increment points
-    currentPoints += 1;
-
-    // Update points in the database
-    await update(userRef, {
-      points: currentPoints,
-    }).then(() => {
-      console.log("updated score")
-      // Call the function to refetch user
-      // refetchUser(); // Uncomment this if you have a refetchUser function
-    });
-  }
-  
-}
 
 
 
