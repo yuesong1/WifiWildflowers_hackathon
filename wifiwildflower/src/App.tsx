@@ -81,17 +81,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 
 function App() {
+  const authContext = useContext(AuthContext);
+  const currentUser = authContext?.currentUser;
+
   return (
     <Router>
-    <AuthProvider>
         <Routes>
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/dashboard" element={<DashboardScreen />} />
           <Route path="/cam" element={<Camera />} />
-          <Route path="*" element={<Navigate to="/login" />} />
-          <Route path='/rankings' element={<Leaderboard />} />
+          <Route path="*" element={currentUser ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+          <Route path='/leaderboard' element={<Leaderboard />} />
         </Routes>
-    </AuthProvider>
     </Router>
   );
 }

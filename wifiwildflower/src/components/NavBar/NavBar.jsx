@@ -1,11 +1,12 @@
 import { BottomNavigation,BottomNavigationAction,Paper } from "@mui/material";
 import { useEffect } from "react";
-import { Home, Person, Logout } from "@mui/icons-material";
+import { Home, Person, Logout, Leaderboard } from "@mui/icons-material";
 import React, { useContext } from 'react';
 import { AuthContext } from '../../App'; // Replace with your actual import
 import { getAuth } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { AuthContextType } from '../../App'; // Replace with your actual import
+
 
 export const NavBar= ()=> { 
     const [value, setValue] = React.useState(0);
@@ -36,7 +37,7 @@ export const NavBar= ()=> {
           }}
         >
           <BottomNavigationAction label="Home" icon={<Home />} />
-          <BottomNavigationAction label="User" icon={<Person />} />
+          <BottomNavigationAction label="Leaderboard" icon={<Leaderboard />} onClick={() => navigate('/leaderboard')} />
           <BottomNavigationAction label="Logout" icon={<Logout />} onClick={logout} />
 
         </BottomNavigation>
