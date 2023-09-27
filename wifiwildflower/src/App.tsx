@@ -10,6 +10,8 @@ import DashboardScreen from "./components/Dashboard/DashboardScreen.jsx"
 import LeaderBoard from './components/LeaderBoard/LeaderBoard.jsx';
 import Camera from './components/Camera/Camera';
 import PushbackJet from './components/PushbackJet/PushbackJet';
+import Transport from './components/Camera/Transport';
+import LocationScreen from './components/EventwithLocation/LocationScreen';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -93,6 +95,8 @@ function App() {
           <Route path="/leaderboard" element={<LeaderBoard />} />
           <Route path="/cam" element={<Camera />} />
           <Route path="/jet" element={<PushbackJet />} />
+          <Route path="/transport" element={<Transport />} />
+          <Route path="/event" element={<LocationScreen />} />
           <Route path="*" element={currentUser ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
     
         </Routes>

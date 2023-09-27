@@ -6,6 +6,7 @@ import { Button, Container } from '@mui/material';
 const currentPosition={
     latitute:-37.79976696090261,
     longitude:144.9648329121283
+
 }
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
@@ -26,6 +27,7 @@ console.log("Unable to retrieve your location");
 const LocationScreen = props => {
     const [mapObject, setMapObject] = useState(null);
     return (
+
     < >
     <Container sx={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
       Your current locaiton is : {currentPosition.latitute}+{currentPosition.longitude}
@@ -36,6 +38,7 @@ const LocationScreen = props => {
     </Container>
 
     </>
+
   )
 }
 
