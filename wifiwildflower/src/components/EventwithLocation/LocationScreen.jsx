@@ -2,10 +2,11 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { GoogleMapCard } from './GoogleMapCard';
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 const currentPosition={
-    latitute:0,
-    longitude:0
+    latitute:-37.79976696090261,
+    longitude:144.9648329121283
+
 }
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
@@ -26,13 +27,18 @@ console.log("Unable to retrieve your location");
 const LocationScreen = props => {
     const [mapObject, setMapObject] = useState(null);
     return (
-    <div>
+
+    < >
+    <Container sx={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
       Your current locaiton is : {currentPosition.latitute}+{currentPosition.longitude}
       {/* <LocatorButton mapObject={mapObject} /> */}
       {/* <Map setMapObject={setMapObject} /> */}
-      <GoogleMapCard height="500px" lat={currentPosition.latitude} lng={currentPosition.longitude}/>
+      <GoogleMapCard height="500px" lat={Number(currentPosition.latitude)} lng={Number(currentPosition.longitude)}/>
       <Button variant="contained">Join Event</Button>
-    </div>
+    </Container>
+
+    </>
+
   )
 }
 
