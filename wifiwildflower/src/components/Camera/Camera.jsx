@@ -7,6 +7,6 @@ const Camera = () => {
       <input accept="image/*" id="icon-button-file" type="file" capture="user"/>
     </div>
   )
-}"
+}
 
 export default Camera
