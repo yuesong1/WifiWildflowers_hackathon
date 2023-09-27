@@ -2,7 +2,8 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { GoogleMapCard } from './GoogleMapCard';
-import { Button, Container } from '@mui/material';
+import { Button, Container, Grid, Typography } from '@mui/material';
+
 const currentPosition={
     latitute:-37.79976696090261,
     longitude:144.9648329121283
@@ -29,13 +30,22 @@ const LocationScreen = props => {
     return (
 
     < >
-    <Container sx={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
-      Your current locaiton is : {currentPosition.latitute}+{currentPosition.longitude}
-      {/* <LocatorButton mapObject={mapObject} /> */}
-      {/* <Map setMapObject={setMapObject} /> */}
-      <GoogleMapCard height="500px" lat={Number(currentPosition.latitude)} lng={Number(currentPosition.longitude)}/>
-      <Button variant="contained">Join Event</Button>
-    </Container>
+
+    <Grid container sx={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
+   
+        <Typography variant='h3'>
+        St.Kilda Beach Event
+        </Typography>
+  
+          Your current locaiton is : {currentPosition.latitute}+{currentPosition.longitude}
+ 
+        <GoogleMapCard height="500px" lat={Number(currentPosition.latitude)} lng={Number(currentPosition.longitude)}/>
+  
+  
+        <Button variant="contained">Join Event</Button>
+    
+
+    </Grid>
 
     </>
 
