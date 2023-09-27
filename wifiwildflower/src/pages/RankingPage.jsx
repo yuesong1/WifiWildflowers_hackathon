@@ -4,7 +4,7 @@ import "./RankingPage.css";
 import {NavBar} from "../components/NavBar/NavBar";
 import UserCard from '../components/Dashboard/UserCard';
 import EventCard from '../components/Dashboard/EventCard';
-import RecycleCard from '../components/Dashboard/RecycleCard';
+import RecycleCard from '../components/Dashboard/TransportCard';
 import Grid from '@mui/material/Grid';
 import CssBaseline from '@mui/material/CssBaseline';
 

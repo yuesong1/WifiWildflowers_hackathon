@@ -13,17 +13,27 @@ import { birdPic,randomPic } from '../../Urls';
 
 import { useTheme } from '@emotion/react'
 import { Container } from '@mui/material';
-const RecycleCard = props => {
+import { useNavigate } from 'react-router-dom' // Change this line
+
+
+const TransportCard = props => {
     const theme = useTheme();
+    const navigate = useNavigate();
+
+    const navigateToCam = () => {
+        navigate('/transport');
+    }
+
+
   return (
-    <Card sx={{ display: 'flex' }}>
+    <Card sx={{ display: 'flex' }} onClick={navigateToCam}>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
             <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="h5">
-                Recycle Today
+                Transport Challenge
             </Typography>
             <Typography variant="subtitle1" color="text.secondary" component="div">
-                Recycle your staff and get points!
+                Daily pledge to ride green to uni
             </Typography>
             </CardContent>
 
@@ -31,15 +41,15 @@ const RecycleCard = props => {
         <CardMedia
             component="img"
             sx={{ width: 151 }}
-            image={randomPic}
+            image={process.env.PUBLIC_URL + '/bike.png'}
             alt="pic"
         />
         </Card>
   )
 }
 
-RecycleCard.propTypes = {
+TransportCard.propTypes = {
 
 }
 
-export default RecycleCard
+export default TransportCard

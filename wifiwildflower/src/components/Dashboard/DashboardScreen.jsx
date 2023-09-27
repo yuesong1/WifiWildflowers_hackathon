@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {NavBar} from "../NavBar/NavBar";
 import UserCard from './UserCard';
 import EventCard from './EventCard';
-import RecycleCard from './RecycleCard';
+import TransportCard from './TransportCard';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -31,21 +31,26 @@ export default function DashboardScreen() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" maxWidth="xs" spacing={4} justity="space-around" 
-        sx={{justifyContent: "center", paddingTop:"50px"}}>
+      <Grid container component="main" maxWidth="xs" spacing={4} justify="space-around" 
+        sx={{justifyContent: "center", paddingTop:"50px", marginBottom: "100px"}}>
         <CssBaseline />
-        <NavBar/>
-          <Grid sx={{padding:"20px"}}>
+        
+          <Grid sx={{padding:"20px", cursor: "pointer" }}>
             <UserCard/>
           </Grid>
-          <Grid sx={{padding:"20px"}}>
+          <Grid sx={{padding:"20px", cursor: "pointer"}}>
             <EventCard/>
           </Grid>
-          <Grid sx={{padding:"20px"}}>
-            <RecycleCard/>
+          <Grid sx={{padding:"20px", cursor: "pointer"}}>
+            <TransportCard/>
           </Grid>
+          <Button variant="contained" color="primary" style={{borderRadius: "50%", opacity: "0.5", width: "150px", height: "150px", marginTop: "40px"}} onClick={() => alert("coming soon")}>
+        Sponsor a Challenge
+      </Button>
         
       </Grid>
+      <NavBar/>
+      
     </ThemeProvider>
   );
 }
