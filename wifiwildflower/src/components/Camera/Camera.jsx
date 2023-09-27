@@ -13,6 +13,7 @@ const Camera = () => {
   const [found, setFound] = useState(false);
   const [hasRun, setHasRun] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [YourItem, setYourItem] = useState(null)
 
   const authContext = useContext(AuthContext);
   const currentUser = authContext ? authContext.currentUser : null;
@@ -22,6 +23,9 @@ const Camera = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [streaming, setStreaming] = useState(false);
+
+  //
+  const randomNumber = Math.floor(Math.random() * (60 - 50 + 1)) + 50;
   
   
 
@@ -115,7 +119,7 @@ const Camera = () => {
       });
   
       // Increment points
-      currentPoints += 10;
+      currentPoints += randomNumber;
   
       // Update points in the database
       await update(userRef, {
@@ -125,17 +129,23 @@ const Camera = () => {
         // Call the function to refetch user
         // refetchUser(); // Uncomment this if you have a refetchUser function
       });
-    }
+    } else {
+      setYourItem(items[0].label)
+  }
     
   }
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", gap: "00px" }}>
+      <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "20px", borderRadius: "15px", width: "80%", boxShadow: "0px 0px 10px 5px rgba(0, 0, 0, 0.1)", marginTop: "2vh"}}>
+        <p style={{fontSize: window.innerWidth <= 768 ? '10px' : '16px'}}>Did you know that producing just one coffee cup results in 110g of CO2 emissions? That's a significant environmental impact from just one item. This is why it's always best to use reusable cups whenever possible to significantly reduce our carbon footprint. However, if you're caught without your reusable mug, recycling is a close second best. In fact, recycling a traditional paper coffee cup reduces its carbon footprint by a remarkable 54%. Landfilling, on the other hand, should always be the last resort, as it is the least environmentally friendly option. Let's compete to see how much CO2 we can reduce together!. Our AI will verify whether you really have a coffee cup in hand! So, simply upload a picture of your coffee cup, pledge to recycle, and start earning points while making a tangible difference for our planet!</p>
+
+      </div>
       <h1 style={{textAlign: "center"}}> Take a photo</h1>
       <div style={{display: "flex", justifyContent: "center"}}>
       <label htmlFor="icon-button-file">
         <input accept="image/*" id="icon-button-file" type="file" capture="user" onChange={handleFileUpload} style={{display: "none"}}/>
-        <Button component="span" sx={{ margin: 5, borderRadius: 5, boxShadow: '0px 0px 30px 5px rgba(0, 0, 0, 0.3)' }}>
+        <Button component="span" sx={{ margin: 1, borderRadius: 5, boxShadow: '0px 0px 30px 5px rgba(0, 0, 0, 0.3)' }}>
           <CameraAlt sx={{ fontSize: 100, color: 'black' }} />
         </Button>
       </label>
@@ -150,12 +160,12 @@ const Camera = () => {
     hasRun && (
       found ? (
         <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"}}>
-          <h2>Success! You've successfully earned 10 points</h2>
+          <h2>Success! You've successfully saved {randomNumber}g of carbon by recycling compared to landfill</h2>
           <ThumbUpAlt style={{color: '#bada55', fontSize: '100px'}}></ThumbUpAlt>
         </div>
       ) : (
         <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"}}>
-          <h2>Failure! You didn't earn any points</h2>
+          <h2>Failure! {YourItem} is not eligible! You didn't earn any points</h2>
           <ThumbDownAlt style={{color: '#ff0000', fontSize: '100px'}}></ThumbDownAlt>
         </div>
       )
