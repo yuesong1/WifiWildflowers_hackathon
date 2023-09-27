@@ -11,6 +11,8 @@ import { NavBar } from '../NavBar/NavBar';
 import { Container, Grid } from '@mui/material';
 import { userList } from './LeaderBoardAPI';
 import PushbackJet from '../PushbackJet/PushbackJet';
+import { StyledText } from '../../Fonts';
+
 const LeaderBoard = () => {
     const list=userList;
     const commonStyles = {
@@ -23,9 +25,14 @@ const LeaderBoard = () => {
   return (
     <>
         <NavBar/>
-            <Container sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", padding:"40px"}}>
+        
+        <Container sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", padding:"40px"}}>
                 <PushbackJet/>
-                <Typography variant="h4">Leader Board</Typography>
+                <Typography variant="h5">
+                    <StyledText>
+                    Leader Board
+                    </StyledText>
+                </Typography>
                 <Grid container xs={12} sx={{padding:"40px"}}>
                     {list.map((user)=>(
                         <>
@@ -40,7 +47,11 @@ const LeaderBoard = () => {
                                     <RankListItem {...user} ></RankListItem>
                                 </Grid>
                                 <Grid>
-                                    <Typography variant='h5'>{user.score}</Typography>
+                                    <Typography variant='h5'>
+                                        <StyledText>
+                                            {user.score}
+                                        </StyledText>
+                                    </Typography>
                                 </Grid>
 
                             </Grid>
@@ -51,6 +62,9 @@ const LeaderBoard = () => {
                 </Grid>
 
             </Container>
+
+        
+           
     </>
   )
 }
