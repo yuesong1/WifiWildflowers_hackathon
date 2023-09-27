@@ -6,7 +6,8 @@ import { getAnalytics } from "firebase/analytics";
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import LoginScreen from './components/Login/LoginScreen';
 import { useState, useEffect, createContext, useContext } from 'react';
-import Dashboard from "./screens/dashboard"
+import DashboardScreen from "./components/Dashboard/DashboardScreen.jsx"
+import Leaderboard from "./pages/RankingPage.jsx";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -84,8 +85,9 @@ function App() {
     <AuthProvider>
         <Routes>
           <Route path="/login" element={<LoginScreen />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<DashboardScreen />} />
           <Route path="*" element={<Navigate to="/login" />} />
+          <Route path='/rankings' element={<Leaderboard />} />
         </Routes>
     </AuthProvider>
     </Router>
