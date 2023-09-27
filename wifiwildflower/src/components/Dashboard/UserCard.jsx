@@ -13,14 +13,23 @@ import { birdPic,randomPic } from '../../Urls';
 
 import { useTheme } from '@emotion/react'
 import { Container } from '@mui/material';
+import { useNavigate } from 'react-router-dom' // Change this line
+
+
 const UserCard = props => {
     const theme = useTheme();
+    const navigate = useNavigate();
+
+    const navigateToCam = () => {
+        navigate('/cam');
+    }
+
   return (
-    <Card sx={{ display: 'flex' }}>
+    <Card sx={{ display: 'flex' }} onClick={navigateToCam}>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
             <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="h5">
-                Anon
+                Camera Challenge
             </Typography>
             <Typography variant="subtitle1" color="text.secondary" component="div">
                 Your contribution matters
