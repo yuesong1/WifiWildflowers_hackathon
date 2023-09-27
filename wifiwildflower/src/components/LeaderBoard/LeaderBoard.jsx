@@ -20,7 +20,7 @@ const LeaderBoard = () => {
     const authContext = useContext(AuthContext);
     const currentUser = authContext ? authContext.currentUser : null;
     const db = getDatabase();
-    const userRef = dbRef(db, 'users/' + currentUser.uid);
+    //const userRef = dbRef(db, 'users/' + currentUser.uid);
 
     const [userList, setUserList] = useState([]);
 
@@ -55,7 +55,7 @@ const LeaderBoard = () => {
         <Container sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", padding:"40px"}}>
                 <PushbackJet/>
                     <StyledText component="span">
-                    Leader Board
+                    LeaderBoard
                     </StyledText>
                 <Grid container sx={{padding:"40px"}}>
                     {list.map((user, index)=>(
