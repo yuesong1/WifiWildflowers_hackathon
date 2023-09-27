@@ -5,6 +5,8 @@ import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginScreen from './components/Login/LoginScreen.tsx';
+import DashboardScreen from './components/Dashboard/DashboardScreen';
+//import { Dashboard } from "./components/misc";  
 
 
 console.log(process.env.REACT_APP_API_KEY)
@@ -30,6 +32,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginScreen />} />
+        <Route path="/dashboard" element={<DashboardScreen />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
