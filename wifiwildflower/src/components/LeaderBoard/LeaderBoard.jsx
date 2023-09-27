@@ -10,21 +10,43 @@ import RankListItem from './RankListItem';
 import { NavBar } from '../NavBar/NavBar';
 import { Container, Grid } from '@mui/material';
 import { userList } from './LeaderBoardAPI';
+import PushbackJet from '../PushbackJet/PushbackJet';
 const LeaderBoard = () => {
     const list=userList;
+    const commonStyles = {
+        bgcolor: 'background.paper',
+        m: 1,
+        border: 1,
+        width: '5rem',
+        height: '5rem',
+      };
   return (
     <>
         <NavBar/>
             <Container sx={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column", padding:"40px"}}>
-                <Typography variant="h3">Leader Board</Typography>
+                <PushbackJet/>
+                <Typography variant="h4">Leader Board</Typography>
                 <Grid container xs={12} sx={{padding:"40px"}}>
                     {list.map((user)=>(
-                        <Grid xs={12}>
-                            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', display: "flex", justifyContent:"center"}}>
-                                <RankListItem {...user} ></RankListItem>
-                                <Divider variant="inset" component="li" />
-                            </List>
-                        </Grid>
+                        <>
+                            <Grid container xs={12} 
+                            sx={{
+                                alignItems:"center",
+                                justifyContent:"space-between",
+                                margin:"10px",padding:"10px",
+                                borderRadius:"10px", borderColor:"primary.main"}}  >
+
+                                <Grid>
+                                    <RankListItem {...user} ></RankListItem>
+                                </Grid>
+                                <Grid>
+                                    <Typography variant='h5'>{user.score}</Typography>
+                                </Grid>
+
+                            </Grid>
+                            
+                        </>
+
                     ))}
                 </Grid>
 

@@ -1,3 +1,4 @@
+
 export const userList=[
     {username: "A1", score: "90"},
     {username: "A2", score: "58"},
@@ -12,3 +13,6 @@ export const userList=[
     {username: "A11", score: "58"},
     {username: "A12", score: "85"},
 ]
+
+export const randomCat = "https://api.thecatapi.com/v1/images/search"
+

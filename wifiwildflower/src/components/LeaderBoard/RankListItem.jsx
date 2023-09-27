@@ -9,14 +9,14 @@ import Typography from '@mui/material/Typography';
 
 const RankListItem = (props) => {
   return (
-    <ListItem alignItems="flex-start" sx={{justifyContent:"center"}}>
+    <ListItem alignItems="flex-start" sx={{alignItems:"center",justifyContent:"space-between"}}>
     <ListItemAvatar>
     <Avatar alt={props.username} src="/static/images/avatar/1.jpg" />
     </ListItemAvatar>
     <ListItemText
       primary={props.username}
     />
-    <Typography variant='h5'>{props.score}</Typography>
+   
     </ListItem>
   )
 }
