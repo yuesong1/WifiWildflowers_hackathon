@@ -1,5 +1,5 @@
 import React from 'react'
-import gif from "./pic/IMG_0070.GIF"
+import gif from "./pic/pushjet.gif"
 import { Grid, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import "./PushbackJet.css";
@@ -26,7 +26,7 @@ const PushbackJet = () => {
 
   return (
     <>
-        <Grid container sx={{display:"flex", justifyContent:"center", padding:"50px"}}>
+        <Grid container sx={{display:"flex", justifyContent:"center", padding:"20px"}}>
             <Typography variant='h4'>
                 <StyledText>
                     PUSH BACK THE JET!
