@@ -19,9 +19,7 @@ const RankListItem = (props) => {
       primary={props.username}
     /> */}
     <StyledText>
-      <Typography>
         {props.username}
-      </Typography>
     </StyledText>
    
     </Grid>
