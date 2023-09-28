@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { GoogleMapCard } from './GoogleMapCard';
 import { Button, Container, Grid, Typography } from '@mui/material';
+import { NavBar } from '../NavBar/NavBar';
 
 const currentPosition={
     latitute:-37.79976696090261,
@@ -30,7 +31,7 @@ const LocationScreen = props => {
     return (
 
     < >
-
+    <NavBar/>
     <Grid container sx={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
    
         <Typography variant='h3'>
