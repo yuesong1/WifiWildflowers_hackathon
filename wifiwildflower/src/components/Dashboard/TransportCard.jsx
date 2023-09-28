@@ -26,7 +26,7 @@ const TransportCard = props => {
 
 
   return (
-    <Card sx={{ display: 'flex' }} onClick={navigateToCam}>
+    <Card sx={{ display: 'flex' }} onClick={navigateToCam} className='cardStyle'>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
             <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="h5">
@@ -40,7 +40,7 @@ const TransportCard = props => {
         </Box>
         <CardMedia
             component="img"
-            sx={{ width: 151 }}
+            sx={{ width: "37vw"  }}
             image={process.env.PUBLIC_URL + '/bike.png'}
             alt="pic"
         />

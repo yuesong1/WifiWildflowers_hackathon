@@ -22,10 +22,10 @@ const EventCard = props => {
         navigate('/event');
     }
   return (
-    <Card sx={{ display: 'flex' }} onClick={navigateToEvent}>
+    <Card sx={{ display: 'flex' }} onClick={navigateToEvent} className='cardStyle'> 
         <CardMedia
             component="img"
-            sx={{ width: 151 }}
+            sx={{ width: "37vw" }}
             image={randomPic}
             alt="pic"
         />
