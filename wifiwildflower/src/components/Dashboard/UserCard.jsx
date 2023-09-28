@@ -26,8 +26,8 @@ const UserCard = props => {
     }
 
   return (
-    <Card sx={{ display: 'flex' }} onClick={navigateToCam} className='cardStyle'>
-        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', backgroundColor: "#FEF7DA"}}>
+    <Card sx={{ display: 'flex',backgroundColor: "#FEF7DA" }} onClick={navigateToCam} className='cardStyle'>
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
             <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="h5">
                 Coffee Cup Recycling Pledge

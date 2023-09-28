@@ -3,5 +3,5 @@
     flex-direction: row;
     width: 85vw;
     height: 45vw;
-
+    justify-content: space-between;
 }
